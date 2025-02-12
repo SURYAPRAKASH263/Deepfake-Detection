@@ -36,7 +36,7 @@ Pillow
 <ol>
     <li><strong>Clone the repository:</strong>
 
-    <pre><code>git clone https://github.com/gitone912/deepfaker_deepfake_detector.git
+    <pre><code>git clone[https://github.com/SURYAPRAKASH263/Deepfake-Detection.git]
 cd deepfaker_deepfake_detector
     </code></pre></li>
 
