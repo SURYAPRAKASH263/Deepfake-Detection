@@ -28,6 +28,7 @@
 numpy
 tensorflow
 django
+Pillow
 </code></pre>
 
 <h2>Installation</h2>
