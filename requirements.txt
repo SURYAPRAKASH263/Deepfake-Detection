@@ -1,0 +1,5 @@
+opencv-python
+numpy
+tensorflow==2.17.1
+django
+pillow
