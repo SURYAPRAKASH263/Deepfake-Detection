@@ -10,7 +10,7 @@
 <h1>Deepfake Detection Web Application</h1>
 
 <p>This web application allows users to upload a video, which is then analyzed to detect whether it contains deepfake content. The app processes the video, extracts frames, and uses a pre-trained deep learning model to evaluate each frame's authenticity.</p>
-[![Deepfake Detection Demo](https://img.youtube.com/vi/W8vzLt1McN0/0.jpg)](https://youtu.be/W8vzLt1McN0)
+[![Deepfake Detection Demo](https://drive.google.com/file/d/1aX9ivhAPiwwCt8q83vgPCFyfTxEC-oWn/view?usp=sharing]
 
 
 <h2>Features</h2>
