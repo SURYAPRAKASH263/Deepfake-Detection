@@ -114,7 +114,7 @@ source venv/bin/activate   # On Windows: venv\Scripts\activate
 <p>This project is licensed under the MIT License.</p>
 
 <h2>Contact</h2>
-<p>For any questions or feedback, please contact Surya Prakash mail any project related query on twenty6surya@gmail.com.</p>
+<p>For any questions or feedback, please contact Surya Prakash,mail any project related query on twenty6surya@gmail.com.</p>
 
 </body>
 </html>
