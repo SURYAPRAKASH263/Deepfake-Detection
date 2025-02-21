@@ -12,23 +12,9 @@ jobs:
   build:
     runs-on: ubuntu-latest
 
-    services:
-      postgres:
-        image: postgres:latest
-        env:
-          POSTGRES_USER: postgres
-          POSTGRES_PASSWORD: postgres
-          POSTGRES_DB: postgres
-        ports:
-          - 5432:5432
-        options: >-
-          --health-cmd pg_isready
-          --health-interval 10s
-          --health-timeout 5s
-          --health-retries 5
-
     env:
-      DATABASE_URL: postgres://postgres:postgres@localhost:5432/postgres
+      CREATE_SUPERUSER: false
+      DJANGO_SUPERUSER_EMAIL: admin@example.com  # Change this to your superuser email
 
     steps:
     - name: Checkout repository
@@ -41,42 +27,27 @@ jobs:
 
     - name: Install dependencies
       run: |
+        set -o errexit
         python -m pip install --upgrade pip
         pip install -r requirements.txt
 
-    - name: Run migrations
+    - name: Collect Static Files
       run: |
+        set -o errexit
+        python manage.py collectstatic --noinput
+
+    - name: Run Migrations
+      run: |
+        set -o errexit
         python manage.py migrate
 
-    - name: Run tests
+    - name: Create Superuser (if enabled)
+      if: env.CREATE_SUPERUSER == 'true'
       run: |
-        python manage.py test
+        set -o errexit
+        python manage.py createsuperuser --noinput --email "$DJANGO_SUPERUSER_EMAIL"
 
-  lint:
-    runs-on: ubuntu-latest
-
-    steps:
-    - name: Checkout repository
-      uses: actions/checkout@v2
-
-    - name: Set up Python
-      uses: actions/setup-python@v2
-      with:
-        python-version: '3.8'
-
-    - name: Install dependencies
+    - name: Start Django Server
       run: |
-        python -m pip install --upgrade pip
-        pip install flake8
-
-    - name: Check Python version
-      run: |
-        python --version
-
-    - name: Check pip version
-      run: |
-        pip --version
-
-    - name: Lint code
-      run: |
-        flake8 .
+        set -o errexit
+        python manage.py runserver 0.0.0.0:8000
